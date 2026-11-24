@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✦ Axiom by Rusan — 15s Founder-Led Motion Film</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #FAFAFC;
+      --card-bg: #FFFFFF;
+      --border: rgba(15, 23, 42, 0.08);
+      --border-accent: rgba(99, 102, 241, 0.25);
+      --foreground: #0F172A;
+      --muted: #64748B;
+      --accent: #6366F1;
+      --accent-light: #EEF2FF;
+      --emerald: #10B981;
+      --shadow-dashboard: 0 25px 80px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--foreground);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    ::selection {
+      background: rgba(99, 102, 241, 0.2);
+      color: var(--foreground);
+    }
+
+    /* Ambient Architectural Grid */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Soft Luminous Glows */
+    .glow-top {
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0.02) 50%, transparent 70%);
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 48px 32px 100px;
+    }
+
+    /* Top Brand Navigation */
+    .nav-header {
+      display: flex;
+      justifyContent: space-between;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--foreground);
+    }
+
+    .brand-sparkle {
+      font-size: 22px;
+      color: var(--foreground);
+      line-height: 1;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-left: 2px;
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 30px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--foreground);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Hero Header */
+    .hero-section {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto 56px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 30px;
+      background: var(--accent-light);
+      border: 1px solid var(--border-accent);
+      color: #4F46E5;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .hero-title span.serif {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: clamp(16px, 1.8vw, 19px);
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* Main Showcase Grid: Left Player, Right Director Intel */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    @media (min-width: 1024px) {
+      .showcase-grid {
+        grid-template-columns: 460px 1fr;
+      }
+    }
+
+    /* Video Player Card */
+    .player-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow-dashboard);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .format-switcher {
+      display: flex;
+      gap: 8px;
+      background: #F1F5F9;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+
+    .format-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .format-btn.active {
+      background: #FFFFFF;
+      color: var(--foreground);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    /* Video Wrapper */
+    .video-viewport {
+      position: relative;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #0F172A;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      transition: aspect-ratio 0.3s ease;
+    }
+
+    .video-viewport.vertical {
+      aspect-ratio: 9 / 16;
+    }
+
+    .video-viewport.landscape {
+      aspect-ratio: 16 / 9;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+    }
+
+    /* Player Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .timeline-scrubber {
+      width: 100%;
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #E2E8F0;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .timeline-scrubber::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(99, 102, 241, 0.4);
+      transition: transform 0.1s ease;
+    }
+
+    .timeline-scrubber::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .primary-btn:hover {
+      background: #1E293B;
+      transform: translateY(-1px);
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #F1F5F9;
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 13px;
+    }
+
+    .icon-btn:hover {
+      background: #E2E8F0;
+    }
+
+    .time-indicator {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .download-pills {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .download-link {
+      flex: 1;
+      padding: 10px;
+      border-radius: 12px;
+      background: var(--accent-light);
+      border: 1px solid var(--border-accent);
+      color: #4F46E5;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .download-link:hover {
+      background: #E0E7FF;
+      transform: translateY(-1px);
+    }
+
+    /* Director Storyboard Specs (Right Column) */
+    .director-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .director-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .timeline-acts {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .act-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .act-row:hover {
+      background: #FFFFFF;
+      border-color: var(--border-accent);
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+      transform: translateX(4px);
+    }
+
+    .act-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .act-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 4px;
+    }
+
+    .act-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Keyframes Gallery */
+    .gallery-section {
+      margin-top: 80px;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .keyframe-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
+    }
+
+    .keyframe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      border-color: var(--border-accent);
+    }
+
+    .keyframe-img-box {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #0F172A;
+      overflow: hidden;
+    }
+
+    .keyframe-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .keyframe-meta {
+      padding: 20px;
+    }
+
+    .keyframe-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .keyframe-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--foreground);
+      margin-bottom: 6px;
+    }
+
+    .keyframe-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow-top"></div>
+
+  <div class="container">
+    <!-- Top Navigation -->
+    <header class="nav-header">
+      <a href="https://axiombyrusan.vercel.app/" target="_blank" class="brand-logo">
+        <span class="brand-sparkle">✦</span>
+        <span class="brand-title">AXIOM</span>
+        <span class="brand-sub">by Rusan</span>
+      </a>
+
+      <div class="nav-status">
+        <span class="pulse-dot"></span>
+        <span>SYSTEMS OPERATIONAL</span>
+      </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="hero-section">
+      <div class="hero-badge">✦ OFFICIAL 15-SECOND MOTION FILM // DIRECTIVE MASTER</div>
+      <h1 class="hero-title">
+        Systems by Rusan. <br />
+        <span class="serif">Built to move.</span>
+      </h1>
+      <p class="hero-desc">
+        A 15-second founder-led motion film for <strong>Rusan</strong>, founder of Axiom — bringing AI automations, website design, CRM builds, and direct consultancy into one connected system.
+      </p>
+    </section>
+
+    <!-- Showcase Layout: Video Player + Director Specs -->
+    <div class="showcase-grid">
+      <!-- Left Column: Video Player Card -->
+      <div class="player-card">
+        <!-- 9:16 / 16:9 Switcher -->
+        <div class="format-switcher">
+          <button type="button" class="format-btn active" id="btn-vertical" onclick="setFormat('vertical')">
+            📱 9:16 Vertical Master
+          </button>
+          <button type="button" class="format-btn" id="btn-landscape" onclick="setFormat('landscape')">
+            💻 16:9 Widescreen
+          </button>
+        </div>
+
+        <!-- Video Viewport -->
+        <div class="video-viewport vertical" id="viewport">
+          <video id="main-video" playsinline loop onclick="togglePlay()">
+            <source id="video-source" src="axiom_by_rusan_15s_vertical.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- Custom Controls -->
+        <div class="controls-bar">
+          <input type="range" class="timeline-scrubber" id="scrubber" min="0" max="15" step="0.01" value="0" oninput="onScrub(this.value)" />
+
+          <div class="btn-row">
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button type="button" class="primary-btn" id="play-btn" onclick="togglePlay()">
+                ▶ Play Video
+              </button>
+              <button type="button" class="icon-btn" id="mute-btn" onclick="toggleMute()" title="Mute/Unmute">
+                🔊
+              </button>
+            </div>
+
+            <div class="time-indicator" id="time-display">
+              00:00 / 00:15
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Buttons -->
+        <div class="download-pills">
+          <a href="axiom_by_rusan_15s_vertical.mp4" download class="download-link">
+            ⬇ Download 9:16 MP4 (5.5 MB)
+          </a>
+          <a href="axiom_by_rusan_15s_landscape.mp4" download class="download-link">
+            ⬇ Download 16:9 MP4 (2.7 MB)
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Director Storyboard & Architecture -->
+      <div class="director-column">
+        <!-- Architecture Card -->
+        <div class="director-card">
+          <div class="card-eyebrow">✦ Creative Direction & Narrative Spine</div>
+          <h2 class="card-title">Identity → Problem → Shift → System → Transformation → Axiom</h2>
+          <p style="font-size: 14px; color: var(--muted); margin-bottom: 20px;">
+            Every frame inherits the exact visual language of <a href="https://axiombyrusan.vercel.app/" target="_blank" style="color: var(--accent); font-weight: 600;">axiombyrusan.vercel.app</a>: Instrument Serif italic headlines, crisp Inter typography, Electric Indigo conduits, living telemetry counters, and Rusan's direct founder guarantee.
+          </p>
+
+          <!-- 6 Narrative Acts Breakdown -->
+          <div class="timeline-acts">
+            <div class="act-row">
+              <div class="act-time">0.0s – 2.0s</div>
+              <div>
+                <div class="act-name">Act 1: The Hook</div>
+                <div class="act-desc">Massive editorial statement: <em>"Your business doesn't need more tools."</em> Authoritative Instrument Serif + Inter typography. No generic fade-in; instant confidence. Digital slice glitch triggers the problem.</div>
+              </div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-time">2.0s – 4.5s</div>
+              <div>
+                <div class="act-name">Act 2: The Problem (Fragmentation)</div>
+                <div class="act-desc">Kinetic strikes: <em>TOO MANY TOOLS. DISCONNECTED SCRIPTS. SILENT FAILURES.</em> Floating UI cards drift at conflicting angles (Airtable 429 rate limit, Zapier 504 gateway timeout, Slack dropped notifications).</div>
+              </div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-time">4.5s – 7.0s</div>
+              <div>
+                <div class="act-name">Act 3: The Axiom Shift (Chaos → System)</div>
+                <div class="act-desc">Electric indigo pulse sweeps vertically. Scattered fragments decelerate and violently snap onto an engineering grid. Red error badges morph into green verified pills. Conduits illuminate with data flow.</div>
+              </div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-time">7.0s – 10.5s</div>
+              <div>
+                <div class="act-name">Act 4: Show the System (Axiom Core)</div>
+                <div class="act-desc">Living Axiom Core dashboard with a 1,248 Tasks Synced rolling counter, 99.9% uptime, cubic Bézier activity wave, and founder-led CRM dispatch.</div>
+              </div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-time">10.5s – 13.0s</div>
+              <div>
+                <div class="act-name">Act 5: Rusan's Service Stack</div>
+                <div class="act-desc">Automations, website design, CRM builds, and AI consultancy resolve into one founder-led operating system.</div>
+              </div>
+            </div>
+
+            <div class="act-row">
+              <div class="act-time">13.0s – 15.0s</div>
+              <div>
+                <div class="act-name">Act 6: Brand Reveal & CTA</div>
+                <div class="act-desc">Iconic ✦ sparkle star rotates into place with an iridescent halo. Wordmark locks: <strong>AXIOM by Rusan</strong>. "AI Automation & Digital Presence Advisory." Clear discovery CTA with a rock-solid hold.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyframe Gallery Section -->
+    <section class="gallery-section">
+      <div class="gallery-header">
+        <div class="hero-badge">✦ PRODUCTION KEYFRAMES</div>
+        <h2 style="font-size: 36px; font-weight: 900; letter-spacing: -0.03em;">Master Frame Sequence (1080 × 1920)</h2>
+        <p style="font-size: 16px; color: var(--muted); margin-top: 6px;">Inspect the frame-by-frame visual design at each pivotal story beat.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Keyframe 1 -->
+        <div class="keyframe-card">
+          <div class="keyframe-img-box">
+            <img src="axiom_master_frame_01_rusan.png" alt="Act 1 Hook" />
+          </div>
+          <div class="keyframe-meta">
+            <span class="keyframe-badge">0.8s // FRAME 25</span>
+            <div class="keyframe-title">Act 1: The Hook</div>
+            <div class="keyframe-text">"Your business doesn't need more tools." Massive Instrument Serif + Inter typography.</div>
+          </div>
+        </div>
+
+        <!-- Keyframe 2 -->
+        <div class="keyframe-card">
+          <div class="keyframe-img-box">
+            <img src="axiom_master_frame_02_automations.png" alt="Act 2 Problem" />
+          </div>
+          <div class="keyframe-meta">
+            <span class="keyframe-badge">3.2s // FRAME 95</span>
+            <div class="keyframe-title">Act 2: The Problem</div>
+            <div class="keyframe-text">Disconnected scripts and fragmented error cards floating in 3D disarray.</div>
+          </div>
+        </div>
+
+        <!-- Keyframe 3 -->
+        <div class="keyframe-card">
+          <div class="keyframe-img-box">
+            <img src="axiom_master_frame_03_websites.png" alt="Act 3 Axiom Shift" />
+          </div>
+          <div class="keyframe-meta">
+            <span class="keyframe-badge">6.0s // FRAME 180</span>
+            <div class="keyframe-title">Act 3: The Axiom Shift</div>
+            <div class="keyframe-text">Chaos collapses into a connected grid with glowing indigo data conduits.</div>
+          </div>
+        </div>
+
+        <!-- Keyframe 4 -->
+        <div class="keyframe-card">
+          <div class="keyframe-img-box">
+            <img src="axiom_master_frame_04_crm_consultancy.png" alt="Act 4 System Telemetry" />
+          </div>
+          <div class="keyframe-meta">
+            <span class="keyframe-badge">8.8s // FRAME 265</span>
+            <div class="keyframe-title">Act 4: Show the System</div>
+            <div class="keyframe-text">Living Axiom Core dashboard, 1,248 tasks counter, Bézier wave, and cursor click.</div>
+          </div>
+        </div>
+
+        <!-- Keyframe 5 -->
+        <div class="keyframe-card">
+          <div class="keyframe-img-box">
+            <img src="axiom_master_frame_05_services.png" alt="Act 5 Rusan service stack" />
+          </div>
+          <div class="keyframe-meta">
+            <span class="keyframe-badge">13.0s // FRAME 390</span>
+            <div class="keyframe-title">Act 5: Rusan's Service Stack</div>
+            <div class="keyframe-text">Four connected lanes: AI automations, website design, CRM builds, and direct AI consultancy.</div>
+          </div>
+        </div>
+
+        <!-- Keyframe 6 -->
+        <div class="keyframe-card">
+          <div class="keyframe-img-box">
+            <img src="axiom_master_frame_06_reveal.png" alt="Act 6 Brand Reveal" />
+          </div>
+          <div class="keyframe-meta">
+            <span class="keyframe-badge">14.2s // FRAME 425</span>
+            <div class="keyframe-title">Act 6: Brand Reveal</div>
+            <div class="keyframe-text">✦ AXIOM by Rusan • AI Automation & Digital Presence Advisory • Systems Operational.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const video = document.getElementById('main-video');
+    const source = document.getElementById('video-source');
+    const viewport = document.getElementById('viewport');
+    const playBtn = document.getElementById('play-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const scrubber = document.getElementById('scrubber');
+    const timeDisplay = document.getElementById('time-display');
+
+    let isPlaying = false;
+
+    function togglePlay() {
+      if (video.paused) {
+        video.play();
+        playBtn.textContent = '⏸ Pause Video';
+        isPlaying = true;
+      } else {
+        video.pause();
+        playBtn.textContent = '▶ Play Video';
+        isPlaying = false;
+      }
+    }
+
+    function toggleMute() {
+      video.muted = !video.muted;
+      muteBtn.textContent = video.muted ? '🔇' : '🔊';
+    }
+
+    function onScrub(val) {
+      video.currentTime = parseFloat(val);
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const cur = video.currentTime;
+      const dur = video.duration || 15.0;
+      scrubber.value = cur;
+      scrubber.max = dur;
+
+      const curSec = Math.floor(cur);
+      const curMs = Math.floor((cur - curSec) * 10);
+      timeDisplay.textContent = `00:${curSec < 10 ? '0' : ''}${curSec}.${curMs} / 00:15.0`;
+    }
+
+    video.addEventListener('timeupdate', updateDisplay);
+
+    video.addEventListener('ended', () => {
+      playBtn.textContent = '▶ Play Video';
+      isPlaying = false;
+    });
+
+    function setFormat(fmt) {
+      const btnV = document.getElementById('btn-vertical');
+      const btnL = document.getElementById('btn-landscape');
+
+      if (fmt === 'vertical') {
+        viewport.className = 'video-viewport vertical';
+        source.src = 'axiom_by_rusan_15s_vertical.mp4';
+        btnV.classList.add('active');
+        btnL.classList.remove('active');
+      } else {
+        viewport.className = 'video-viewport landscape';
+        source.src = 'axiom_by_rusan_15s_landscape.mp4';
+        btnL.classList.add('active');
+        btnV.classList.remove('active');
+      }
+      video.load();
+      if (isPlaying) {
+        video.play();
+      }
+    }
+  </script>
+</body>
+</html>
